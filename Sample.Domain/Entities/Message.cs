@@ -4,15 +4,26 @@ using System.Text;
 
 namespace Sample.Domain.Entities
 {
-    public class Message
+    public struct Message
     {
-        public uint Id { get; }
+        public Guid Id { get; }
         public string Text { get; }
 
-        public Message(uint id, string text)
+        public Message(Guid? id, string text)
         {
-            Id = id;
-            Text = text;
+            Id = id ?? Guid.NewGuid();
+            Text = string.Copy(text);
+        }
+
+        public Message(string text)
+            : this(null, text)
+        {
+
+        }
+
+        public Message(Message other)
+            : this(other.Id, other.Text)
+        {
         }
     }
 }
