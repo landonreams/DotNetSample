@@ -7,6 +7,5 @@ namespace Sample.Domain.Abstract
 {
     public interface IMessageRepository : IRepository<Message>
     {
-        Task<Message> FindByIdAsync(Guid id);
     }
 }

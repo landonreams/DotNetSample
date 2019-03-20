@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Sample.API.Services;
 using Sample.Domain.Abstract;
 using Sample.Domain.Entities;
 using Sample.Infrastructure;
@@ -80,19 +79,10 @@ namespace Sample.API
             container.RegisterMvcControllers(app);
             container.RegisterMvcViewComponents(app);
 
-            container.Register<IMessageRepository, InMemoryMessageRepository>(Lifestyle.Singleton);
-            container.Register<IMessageService, MessageService>(Lifestyle.Transient);
-            container.Register<IEnumerable<Message>>(() =>
-            {
-                var result = new List<Message>();
-
-                for (int i = 0; i < 10; i++)
-                {
-                    result.Add(new Message("Hello world"));
-                }
-
-                return result;
-            }, Lifestyle.Singleton);
+            container.Register<IMessageRepository, InMemoryMessageRepository>(Lifestyle.Scoped);
+            container.Register<IEnumerable<Message>>(
+                () => new List<Message>() { new Message("Hello World") }, 
+                Lifestyle.Scoped);
 
             container.AutoCrossWireAspNetComponents(app);
         }

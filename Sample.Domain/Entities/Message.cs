@@ -6,24 +6,16 @@ namespace Sample.Domain.Entities
 {
     public struct Message
     {
-        public Guid Id { get; }
         public string Text { get; }
 
-        public Message(Guid? id, string text)
-        {
-            Id = id ?? Guid.NewGuid();
-            Text = string.Copy(text);
-        }
-
         public Message(string text)
-            : this(null, text)
         {
-
+            Text = text;
         }
 
         public Message(Message other)
-            : this(other.Id, other.Text)
-        {
+            : this(other.Text)
+        {            
         }
     }
 }

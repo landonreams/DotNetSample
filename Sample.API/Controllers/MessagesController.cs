@@ -14,18 +14,17 @@ namespace Sample.API.Controllers
     [ApiController]
     public class MessagesController : ControllerBase
     {
-        private readonly IMessageService _messageService;
+        private readonly IMessageRepository _messageRepository;
 
-        public MessagesController(IMessageService messageService)
+        public MessagesController(IMessageRepository messageRepository)
         {
-            Console.WriteLine("Instantiated MessageController.");
-            _messageService = messageService ?? throw new ArgumentNullException(nameof(messageService));
+            _messageRepository = messageRepository ?? throw new ArgumentNullException(nameof(messageRepository));
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Message>>> Get()
         {
-            return Ok(await _messageService.FindAllAsync());
+            return Ok(await _messageRepository.FindAllAsync());
         }
     }
 }

@@ -11,35 +11,23 @@ namespace Sample.Infrastructure
 {
     public class InMemoryMessageRepository : IMessageRepository
     {
-        private readonly ConcurrentDictionary<Guid, Message> _messages;
+        private readonly ConcurrentBag<Message> _messages;
 
         /// <summary>Initializes a new instance of the <see cref="InMemoryMessageRepository"/> class.</summary>
         /// <param name="messages">The messages.</param>
         public InMemoryMessageRepository(IEnumerable<Message> messages)
         {
-            _messages = new ConcurrentDictionary<Guid, Message>(messages.ToDictionary(m => m.Id, m => new Message(m)));
+            // Clone the messages to prevent potential string manipulation via unmanaged code
+            _messages = new ConcurrentBag<Message>(messages.Select(m => new Message(m)));
         }
 
         /// <summary>Finds all messages asynchronously.</summary>
-        /// <returns>A task .</returns>
+        /// <returns>A task that represents the entire collection.</returns>
         public Task<IEnumerable<Message>> FindAllAsync()
         {
-            return Task.FromResult(_messages.Values.AsEnumerable());
+            return Task.FromResult(_messages.AsEnumerable());
         }
-
-        /// <summary>Asynchronously finds a message by an ID.</summary>
-        /// <param name="id">The message ID.</param>
-        /// <returns></returns>
-        /// <exception cref="MessageNotFoundException"></exception>
-        public Task<Message> FindByIdAsync(Guid id)
-        {
-            if (_messages.TryGetValue(id, out var value))
-            {
-                return Task.FromResult(value);
-            }
-            throw new MessageNotFoundException();
-        }
-
+        
         public Task<Message> CreateAsync(Message entity) => throw new NotSupportedException();
         public Task<Message> DeleteAsync(Message entity) => throw new NotSupportedException();
         public Task<Message> UpdateAsync(Message entity) => throw new NotSupportedException();
