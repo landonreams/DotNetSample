@@ -12,6 +12,7 @@ export class SampleMessageService {
 
   constructor(private http: HttpClient) { }
 
+  // GET /api/messages
   getMessages(): Observable<SampleMessage[]> {
     return this.http.get<SampleMessage[]>(this.messageUrl);
   }

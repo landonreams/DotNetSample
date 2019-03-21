@@ -27,9 +27,5 @@ namespace Sample.Infrastructure
         {
             return Task.FromResult(_messages.AsEnumerable());
         }
-        
-        public Task<Message> CreateAsync(Message entity) => throw new NotSupportedException();
-        public Task<Message> DeleteAsync(Message entity) => throw new NotSupportedException();
-        public Task<Message> UpdateAsync(Message entity) => throw new NotSupportedException();
     }
 }

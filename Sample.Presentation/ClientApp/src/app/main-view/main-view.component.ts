@@ -10,6 +10,7 @@ import { SampleMessage } from '../model/sample-message';
 export class MainViewComponent implements OnInit {
 
   messages: string[] = [];
+  // Starter error message
   error: any = 'No data has been loaded.';
 
   constructor(private messageService: SampleMessageService) { }
@@ -23,6 +24,8 @@ export class MainViewComponent implements OnInit {
     this.messageService.getMessages().subscribe(
       value => {
         if (value.length > 0) {
+          // Since we want the page to display Hello World 10x per the spec,
+          // we need to duplicate that message.
           let firstMessage = value[0];
           for (var i = 0; i < 10; i++) {
             this.messages.push(firstMessage.text);
