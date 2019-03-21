@@ -68,6 +68,8 @@ namespace Sample.API
                 app.UseHsts();
             }
 
+            app.UseCors();  
+
             container.Verify();
 
             app.UseHttpsRedirection();

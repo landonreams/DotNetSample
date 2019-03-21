@@ -1,1 +1,11 @@
 <button (click)="loadResponse($event)">Click to retrieve the API message...</button>
+<div *ngIf="!error && messages.length > 0">
+  <p>Success! Response is:</p>
+  <ol>
+    <li *ngFor="let message of messages">{{message}}</li>
+  </ol>
+</div>
+<div *ngIf="error">
+  <p>Error:</p>
+  <p class="api-error">{{error | json}}</p>
+</div>

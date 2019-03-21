@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SampleMessageService {
-  private messageUrl = 'api/messages';
+  private messageUrl = '/api/messages';
   private messages: SampleMessage[];
 
   constructor(private http: HttpClient) { }
