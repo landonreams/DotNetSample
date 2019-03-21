@@ -23,20 +23,10 @@ This API was designed to fit the following requirements:
 
 * Sample.API
 	* .NET Core Web API that defines the MessagesController
-	* Presents one method.
-	* GET /api/messages
-		* Returns a list of all messages stored in the mock data layer.
+	* Presents a method that returns a list of messages.
 * Sample.Domain
-	* Interfaces
-		* IMessageRepository
-			* Describes the methods a repository of messages should present. 
-	* Entities
-		* Message
-			* A simple object that wraps a string message in the Text attribute.
+	* Defines the Message object and the IMessageRepository interface.
 * Sample.Infrastructure
-	* Contains an in-memory implementation of IMessageRepository aptly named InMemoryMessageRepository
-	* Repository is constructed off of a static list, supplied via SimpleInjector
+	* Implements a read-only in-memory Message Repository
 * Sample.Presentation
-	* .NET Core + Angular 7 website
-	* Calls GET /api/messages when the respective button is pressed
-	* Displays the first message 10x.
+	* .NET Core + Angular 7 website that calls the API and duplicates the result 10x for display.

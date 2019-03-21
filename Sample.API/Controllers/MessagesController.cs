@@ -11,12 +11,22 @@ using System.Threading.Tasks;
 
 namespace Sample.API.Controllers
 {
+
+    /// <summary>
+    /// The MessagesController class.
+    /// Exposes a RESTful API to interact with a message repository.
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("api/[controller]")]
     [ApiController]
     public class MessagesController : ControllerBase
     {
         private readonly IMessageRepository _messageRepository;
 
+
+        /// <summary>Initializes a new instance of the <see cref="MessagesController"/> class.</summary>
+        /// <param name="messageRepository">The message repository.</param>
+        /// <exception cref="ArgumentNullException">messageRepository</exception>
         public MessagesController(IMessageRepository messageRepository)
         {
             _messageRepository = messageRepository ?? throw new ArgumentNullException(nameof(messageRepository));

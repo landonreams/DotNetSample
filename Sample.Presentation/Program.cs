@@ -10,8 +10,15 @@ using Microsoft.Extensions.Logging;
 
 namespace Sample.Presentation
 {
+    /// <summary>
+    /// The Main class of the Presentation.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();

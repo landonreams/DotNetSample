@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Sample.Infrastructure
 {
+    /// <summary>
+    /// Read-only, in-memory implementation of the <see cref="IMessageRepository"/> interface.
+    /// </summary>
     public class InMemoryMessageRepository : IMessageRepository
     {
         private readonly ConcurrentBag<Message> _messages;

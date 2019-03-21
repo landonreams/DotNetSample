@@ -16,8 +16,14 @@ using System.Collections.Generic;
 
 namespace Sample.API
 {
+    /// <summary>
+    /// ASP.NET Core configuration class for the Sample API.
+    /// </summary>
     public class Startup
     {
+
+        /// <summary>Initializes a new instance of the <see cref="Startup"/> class.</summary>
+        /// <param name="configuration">The configuration.</param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,6 +33,8 @@ namespace Sample.API
 
         private Container container = new Container();
 
+        /// <summary>Configures the services; called by ASP.NET Core.</summary>
+        /// <param name="services">The services.</param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -55,6 +63,9 @@ namespace Sample.API
             services.UseSimpleInjectorAspNetRequestScoping(container);
         }
 
+        /// <summary>Configures the specified application; called by ASP.NET Core.</summary>
+        /// <param name="app">The application.</param>
+        /// <param name="env">The environment.</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             InitializeContainer(app);
@@ -76,6 +87,10 @@ namespace Sample.API
             app.UseMvc();
         }
 
+        /// <summary>
+        /// Initializes the SimpleInjector container.
+        /// </summary>
+        /// <param name="app">The application.</param>
         private void InitializeContainer(IApplicationBuilder app)
         {
             container.RegisterMvcControllers(app);
