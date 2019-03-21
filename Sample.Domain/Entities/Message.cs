@@ -18,7 +18,7 @@ namespace Sample.Domain.Entities
         }
 
         /// <summary>
-        /// Clones another <see cref="Message"/> struct into this one.
+        /// Clones another <see cref="Message"/> structure into this one.
         /// </summary>
         /// <param name="other">The source Message.</param>
         public Message(Message other)

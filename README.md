@@ -10,7 +10,7 @@ This API was designed to fit the following requirements:
 1. Use Simple Injector for constructor injection between the API and a mocked data layer, using business objects and interfaces.
 1. Consume the API from a webpage using jQuery, Angular 2+, or Vue. The result should show "hello world" 10x\*.
 
-\* This was clarified as such: "it makes more sense if [the API] was called once and the plage displayed [the result] 10x."
+\* This was clarified as "it makes more sense if [the API] was called once and the page displayed [the result] 10x."
 
 ###### Considerations
 * The C# code needs to be asynchronous.
